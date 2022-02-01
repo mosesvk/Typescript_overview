@@ -1,5 +1,10 @@
-let apples = 5;
-let speed: string = 'fast';
+let apples;
+apples = 5
+// Type Inference doesn't work above because it is not on the same line
+
+let speed = 'fast';
+// This above code is what we will most likely be doing 
+
 let hasName: boolean = true;
 
 let nothingMuch: null = null;
@@ -30,7 +35,11 @@ const logNumber: (i: number) => void = (i: number) => {
   console.log(i)
 };
 
-
+// When to use annotations
+// 1. Function that returns the 'any' type
+const json = '{"x": 10, "y": 20}'
+const coordinates = JSON.parse(json)
+console.log(coordinates); // {x: 10, y: 20}
 
 
 
