@@ -13,10 +13,28 @@ const logger = (message: string): void => {
 
 
 const throwError = (message: string): string => {
-  
+
   if (!message){
     throw new Error(message) 
   }
 
   return message
 }
+
+
+// Destructuring
+  const todaysWeather = {
+    date: new Date(),
+    weather: 'sunny'
+  }
+
+  const logWeather = (todaysWeather: {date: Date, weather: string}): void => {
+    console.log(todaysWeather.date, todaysWeather.weather)
+  }
+  // Now Let's try to destructure the above function
+  const newLogWeather = ({date, weather}: {date: Date, weather: string}): void => {
+    console.log(date, weather)
+  }
+
+  logWeather(todaysWeather)
+  newLogWeather(todaysWeather)
