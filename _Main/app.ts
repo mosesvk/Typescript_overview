@@ -1,26 +1,30 @@
-const person: {
-  name: string;
-  age: number;
-  hobbies: string[];
-  role: [number, string];
-  //this is a tuple example that allows us to catch errors. Although this will NOT catch a PUSH error on line 14. 
-} = {
+// const ADMIN = 0;
+// const READ_ONLY = 1;
+// const AUTHOR = 2;
+
+// enum assigns labels to numbers
+enum Role {
+  ADMIN = 'ADMIN',
+  READ_ONLY = 100,
+  AUTHOR = 'AUTHOR',
+} // {0, 1, 2}
+
+const person = {
   name: 'Mo Money',
   age: 28,
   hobbies: ['Sports', 'Piano'],
-  role: [2, 'author']
+  role: Role.ADMIN,
 };
 
-// person.role.push('admin');
-// person.role[1] = 10
-// person.role = [0, 'admin', 'user']
-
 let favoriteActivities: string[];
-favoriteActivities = ['Sports']
-
+favoriteActivities = ['Sports'];
 
 console.log(person.name);
 
 for (const hobby of person.hobbies) {
-  console.log(hobby.toUpperCase())
+  console.log(hobby.toUpperCase());
+}
+
+if (person.role === Role.ADMIN) {
+  console.log('is admin');
 }
