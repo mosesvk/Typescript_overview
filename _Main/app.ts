@@ -1,8 +1,19 @@
-const person = {
+const person: {
+  name: string;
+  age: number;
+  hobbies: string[];
+  role: [number, string];
+  //this is a tuple example that allows us to catch errors. Although this will NOT catch a PUSH error on line 14. 
+} = {
   name: 'Mo Money',
   age: 28,
-  hobbies: ['Sports', 'Piano']
+  hobbies: ['Sports', 'Piano'],
+  role: [2, 'author']
 };
+
+// person.role.push('admin');
+// person.role[1] = 10
+// person.role = [0, 'admin', 'user']
 
 let favoriteActivities: string[];
 favoriteActivities = ['Sports']
