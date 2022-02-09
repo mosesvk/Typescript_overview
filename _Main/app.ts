@@ -1,30 +1,15 @@
-// const ADMIN = 0;
-// const READ_ONLY = 1;
-// const AUTHOR = 2;
-
-// enum assigns labels to numbers
-enum Role {
-  ADMIN = 'ADMIN',
-  READ_ONLY = 100,
-  AUTHOR = 'AUTHOR',
-} // {0, 1, 2}
-
-const person = {
-  name: 'Mo Money',
-  age: 28,
-  hobbies: ['Sports', 'Piano'],
-  role: Role.ADMIN,
+const combine = (input1: number|string, input2: number|string) => {
+  let result;
+  if (typeof input1 === 'number' && typeof input2 === 'number') {
+    result = input1 + input2;
+  } else {
+    result = input1.toString() + ' & ' + input2.toString()
+  }
+  return result;
 };
 
-let favoriteActivities: string[];
-favoriteActivities = ['Sports'];
+const combineAges = combine(30, 26)
+console.log(combineAges)
 
-console.log(person.name);
-
-for (const hobby of person.hobbies) {
-  console.log(hobby.toUpperCase());
-}
-
-if (person.role === Role.ADMIN) {
-  console.log('is admin');
-}
+const combineNames = combine('Max', 'Anna')
+console.log(combineNames)
