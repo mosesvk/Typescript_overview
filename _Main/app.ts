@@ -1,26 +1,21 @@
-const add = (n1: number, n2: number) => {
-  return n1 + n2
+const addAndHandle = (n1: number, n2: number, cb: (num: number) => void) => {
+  const result = n1 + n2;
+  cb(result);
+  // if we were to add any other parameter to cb then we would get an error because we only specified one parameter in the cb function parameter.
+};
+
+addAndHandle(10, 20, (result) => {
+  console.log(result);
+});
+// we don't have to specify types here because we already did above in the addAndHandle function when using the cb(callback), we already specified that it would take in a number.
+
+
+function sendRequest(data: string, cb: (response: any) => void) {
+  // ... sending a request with "data"
+  return cb({ data: 'Hi there!' });
 }
 
-const printResult = (num: number) => {
-  console.log('Result: ' + num)
-  // Since there is no Return, this function has the return type of VOID, it will show once you hover over printResult
-
-}
-
-printResult(add(5, 12)) // Result: 17
-console.log(printResult(5)) // undefined
-  // So if we try to console.log this function, we will get an UNDEFINED because this function does not return anything
-
-
-let combineValues: (a: number, b: number) => number; 
-combineValues = add;
-// line 16 is a better and more specific way to code "let combineValues: Function;" because we can actually specify what type of function (along with it's parameters) that we want to return
-// We want to specify that this is a Function because if we don't, remember, combineValues will become the <any> type
-// Now if we tried to redefine the following below
-// combineValues = printResult;
-// We would get an error because the function printResult() is a function that does not return a number (it returns void) and only has one parameter
-
-
-
-console.log(combineValues(8, 8))
+sendRequest('Send this!', (response) => {
+  console.log(response);
+  return true;
+});
