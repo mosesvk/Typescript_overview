@@ -5,6 +5,7 @@ const add = (n1: number, n2: number) => {
 const printResult = (num: number) => {
   console.log('Result: ' + num)
   // Since there is no Return, this function has the return type of VOID, it will show once you hover over printResult
+  // So if we try to console.log this function, we will get an UNDEFINED because this function does not return anything
 }
 
 printResult(add(5, 12)) // Result: 17
