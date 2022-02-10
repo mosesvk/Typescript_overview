@@ -1,6 +1,5 @@
-let age: number;
-age = 30;
-const username = "moses"
+const button = document.querySelector('button')
 
-
-console.log(username)
+button?.addEventListener('click', () => {
+  console.log('Clicked')
+})
