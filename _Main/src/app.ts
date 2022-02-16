@@ -1,24 +1,38 @@
 class Department {
-  name: string;
+  // private id: string;
+  // private name: string;
+  // private employees: string[] = [];
+  // private makes 'employees' only accessible from INSIDE the Class. So any method inside the class is still able to work with employees.
 
-  constructor(n: string) {
-    this.name = n;
+  constructor(
+    private readonly id: string,
+    private name: string,
+    private employees: string[] = []
+  ) {
+    // this.name = n;
   }
 
   describe(this: Department) {
-    // "this: Department" will make this method more strict saying that describe() has to be added onto an Instance of Department OR it HAS to have a Name Property like the Department Class
+    console.log(`Department (${this.id}): ${this.name}`);
+  }
 
-    console.log('Department: ' + this.name)
-    // -> will point to ANY object with a NAME property. remember, it doesn't only have to be a Copy of the Department class.
+  addEmployee(employee: string) {
+    this.employees.push(employee);
+  }
+
+  printEmployeeInformation() {
+    console.log(this.employees.length);
+    console.log(this.employees);
   }
 }
 
-// We have to pass the contstructor parameter to this.
-const accounting = new Department('Accounting');
+const accounting = new Department('d1', 'Accounting');
 
-console.log(accounting); 
-// -> Department {name: 'Accounting'}
+accounting.addEmployee('max');
+accounting.addEmployee('trey');
 
-accounting.describe()
-// points to describe() in the class
-// -> Department: Accounting
+// accounting.employees[2] = 'Anna'
+// this will show an error because employees has PRIVATE modifier
+
+accounting.describe();
+accounting.printEmployeeInformation();
