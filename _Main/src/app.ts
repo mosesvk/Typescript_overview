@@ -26,13 +26,39 @@ class Department {
   }
 }
 
-const accounting = new Department('d1', 'Accounting');
+// We will now create different Departments using INHERITANCE. they will inherit Department object.  
 
-accounting.addEmployee('max');
-accounting.addEmployee('trey');
+class ITDepartment extends Department { 
+  admins: string[]; 
+  constructor(id: string, admins: string[]) {
+    super(id, 'IT'); 
+    this.admins = admins
+  }
+}
 
-// accounting.employees[2] = 'Anna'
-// this will show an error because employees has PRIVATE modifier
+class AccountingDepartment extends Department {
+  constructor(id: string, private reports: string[]) {
+    super(id, 'Accounting')
+  }
 
-accounting.describe();
-accounting.printEmployeeInformation();
+  addReport(text: string) {
+    this.reports.push(text)
+  }
+
+  printReports() {
+    console.log(this.reports)
+  }
+}
+
+const it = new ITDepartment('d1', ['Mo, Solia']);
+
+it.addEmployee('max');
+it.addEmployee('trey');
+it.describe();
+it.printEmployeeInformation();
+console.log(it)
+
+const accounting = new AccountingDepartment('d2', [])
+
+accounting.addReport('Something went wrong...')
+accounting.printReports();
