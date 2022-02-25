@@ -2,12 +2,15 @@ class Department {
   // private id: string;
   // private name: string;
   // private employees: string[] = [];
+  // protected employees: string[] = [];
   // private makes 'employees' only accessible from INSIDE the Class. So any method inside the class is still able to work with employees.
 
   constructor(
     private readonly id: string,
     private name: string,
-    private employees: string[] = []
+    // private employees: string[] = [],
+    // the Protected is Like Private, but we can also access it outside the class Department, 
+    protected employees: string[] = [],
   ) {
     // this.name = n;
   }
@@ -39,6 +42,13 @@ class ITDepartment extends Department {
 class AccountingDepartment extends Department {
   constructor(id: string, private reports: string[]) {
     super(id, 'Accounting')
+  }
+
+  addEmployee(name: string) {
+    if (name == 'Max') {
+      return;
+    }
+    this.employees.push(name)
   }
 
   addReport(text: string) {
