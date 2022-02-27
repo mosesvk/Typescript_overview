@@ -9,7 +9,7 @@ class Department {
     private readonly id: string,
     private name: string,
     // private employees: string[] = [],
-    // the Protected is Like Private, but we can also access it outside the class Department, 
+    // the Protected is Like Private, but we can also access it outside the class Department,,,
     protected employees: string[] = [],
   ) {
     // this.name = n;
