@@ -10,7 +10,7 @@ class Department {
     private name: string,
     // private employees: string[] = [],
     // the Protected is Like Private, but we can also access it outside the class Department,,,
-    protected employees: string[] = [],
+    protected employees: string[] = []
   ) {
     // this.name = n;
   }
@@ -29,37 +29,45 @@ class Department {
   }
 }
 
-// We will now create different Departments using INHERITANCE. they will inherit Department object.  
+// We will now create different Departments using INHERITANCE. they will inherit Department object.
 
-class ITDepartment extends Department { 
-  admins: string[]; 
+class ITDepartment extends Department {
+  admins: string[];
   constructor(id: string, admins: string[]) {
-    super(id, 'IT'); 
-    this.admins = admins
+    super(id, 'IT');
+    this.admins = admins;
   }
 }
 
 class AccountingDepartment extends Department {
   private lastReport: string;
+
+  get mostRecentReport() {
+    if (this.lastReport) {
+      return this.lastReport;
+    }
+    throw new Error('No report found');
+  }
+
   constructor(id: string, private reports: string[]) {
     super(id, 'Accounting');
-    this.lastReport = reports[0]
+    this.lastReport = reports[0];
   }
 
   addEmployee(name: string) {
     if (name == 'Max') {
       return;
     }
-    this.employees.push(name)
+    this.employees.push(name);
   }
 
   addReport(text: string) {
     this.reports.push(text);
-    this.lastReport = text
+    this.lastReport = text;
   }
 
   printReports() {
-    console.log(this.reports)
+    console.log(this.reports);
   }
 }
 
@@ -69,9 +77,9 @@ it.addEmployee('max');
 it.addEmployee('trey');
 it.describe();
 it.printEmployeeInformation();
-console.log(it)
+console.log(it);
 
-const accounting = new AccountingDepartment('d2', [])
+const accounting = new AccountingDepartment('d2', []);
 
-accounting.addReport('Something went wrong...')
+accounting.addReport('Something went wrong...');
 accounting.printReports();
