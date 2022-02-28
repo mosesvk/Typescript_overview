@@ -1,17 +1,10 @@
 class Department {
-  // private id: string;
+  // private readonly id: string;
   // private name: string;
-  // private employees: string[] = [];
-  // protected employees: string[] = [];
-  // private makes 'employees' only accessible from INSIDE the Class. So any method inside the class is still able to work with employees.
+  protected employees: string[] = [];
 
-  constructor(
-    private readonly id: string,
-    private name: string,
-    // private employees: string[] = [],
-    // the Protected is Like Private, but we can also access it outside the class Department,,,
-    protected employees: string[] = []
-  ) {
+  constructor(private readonly id: string, public name: string) {
+    // this.id = id;
     // this.name = n;
   }
 
@@ -20,6 +13,8 @@ class Department {
   }
 
   addEmployee(employee: string) {
+    // validation etc
+    // this.id = 'd2';
     this.employees.push(employee);
   }
 
@@ -28,8 +23,6 @@ class Department {
     console.log(this.employees);
   }
 }
-
-// We will now create different Departments using INHERITANCE. they will inherit Department object.
 
 class ITDepartment extends Department {
   admins: string[];
@@ -42,12 +35,19 @@ class ITDepartment extends Department {
 class AccountingDepartment extends Department {
   private lastReport: string;
 
-  // get mostRecentReport() {
-  //   if (this.lastReport) {
-  //     return this.lastReport;
-  //   }
-  //   throw new Error('No report found');
-  // }
+  get mostRecentReport() {
+    if (this.lastReport) {
+      return this.lastReport;
+    }
+    throw new Error('No report found.');
+  }
+
+  set mostRecentReport(value: string) {
+    if (!value) {
+      throw new Error('Please pass in a valid value!');
+    }
+    this.addReport(value);
+  }
 
   constructor(id: string, private reports: string[]) {
     super(id, 'Accounting');
@@ -55,7 +55,7 @@ class AccountingDepartment extends Department {
   }
 
   addEmployee(name: string) {
-    if (name == 'Max') {
+    if (name === 'Max') {
       return;
     }
     this.employees.push(name);
@@ -69,20 +69,33 @@ class AccountingDepartment extends Department {
   printReports() {
     console.log(this.reports);
   }
-} // class AccountingDepartment
+}
 
-const it = new ITDepartment('d1', ['Mo, Solia']);
+const it = new ITDepartment('d1', ['Max']);
 
-it.addEmployee('max');
-it.addEmployee('trey');
+it.addEmployee('Max');
+it.addEmployee('Manu');
+
+// it.employees[2] = 'Anna';
+
 it.describe();
+it.name = 'NEW NAME';
 it.printEmployeeInformation();
+
 console.log(it);
 
 const accounting = new AccountingDepartment('d2', []);
 
-// --> points to // get MostRecentReport // on line 45
-// console.log(accounting.mostRecentReport)
-
+accounting.mostRecentReport = 'Year End Report';
 accounting.addReport('Something went wrong...');
+console.log(accounting.mostRecentReport);
+
+accounting.addEmployee('Max');
+accounting.addEmployee('Manu');
+
 accounting.printReports();
+accounting.printEmployeeInformation();
+
+// const accountingCopy = { name: 'DUMMY', describe: accounting.describe };
+
+// accountingCopy.describe();
