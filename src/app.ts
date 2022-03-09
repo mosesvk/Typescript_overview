@@ -2,9 +2,9 @@ class ProjectInput {
   templateElement: HTMLTemplateElement;
   hostElement: HTMLDivElement;
   element: HTMLFormElement;
-  titleInputElement: HTMLInputElement
-  descriptionInputElement: HTMLInputElement
-  peopleInputElement: HTMLInputElement
+  titleInputElement: HTMLInputElement;
+  descriptionInputElement: HTMLInputElement;
+  peopleInputElement: HTMLInputElement;
 
   constructor() {
     // ! is telling Typescript that we are 100% sure that we will get an that ID.
@@ -20,22 +20,30 @@ class ProjectInput {
     this.element = importedNode.firstElementChild as HTMLFormElement;
     this.element.id = 'user-input';
 
-    this.titleInputElement = this.element.querySelector('#title') as HTMLInputElement
-    this.descriptionInputElement = this.element.querySelector('#description') as HTMLInputElement
-    this.peopleInputElement = this.element.querySelector('#people') as HTMLInputElement
+    this.titleInputElement = this.element.querySelector(
+      '#title'
+    ) as HTMLInputElement;
+    this.descriptionInputElement = this.element.querySelector(
+      '#description'
+    ) as HTMLInputElement;
+    this.peopleInputElement = this.element.querySelector(
+      '#people'
+    ) as HTMLInputElement;
 
-    this.configure()
+    this.configure();
     this.attach();
   }
 
   private submitHandler(event: Event) {
     event.preventDefault();
-    console.log(this.titleInputElement.value)
+    console.log(this.titleInputElement.value);
   }
 
   private configure() {
     //setting up event listeners
-    this.element.addEventListener('submit', this.submitHandler.bind(this))
+    // we need to .bind(this) here so that on line 39... we are binding the same thing on both instances
+    this.element.addEventListener('submit', this.submitHandler.bind(this));
+  
   }
 
   private attach() {
