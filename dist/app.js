@@ -1,4 +1,6 @@
 "use strict";
+const autobind = () => {
+};
 class ProjectInput {
     constructor() {
         this.templateElement = document.getElementById('project-input');

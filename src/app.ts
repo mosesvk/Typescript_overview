@@ -1,3 +1,21 @@
+// autobind decorator
+const autobind = (
+  target: any,
+  methodName: string,
+  descriptor: PropertyDescriptor
+) => {
+  const orininalMethod = descriptor.value;
+  const adjDescriptor: PropertyDescriptor = {
+    configurable: true;
+    get() {
+      const boundFn = originalMethod.bind(this);
+      return boundFn;
+    }
+  }
+  return adjDescriptor
+};
+
+// ProjectInput Class
 class ProjectInput {
   templateElement: HTMLTemplateElement;
   hostElement: HTMLDivElement;
@@ -43,7 +61,6 @@ class ProjectInput {
     //setting up event listeners
     // we need to .bind(this) here so that on line 39... we are binding the same thing on both instances
     this.element.addEventListener('submit', this.submitHandler.bind(this));
-  
   }
 
   private attach() {
